@@ -1,0 +1,10 @@
+.buttons__container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+
+.hide{
+    visibility: hidden;
+}
