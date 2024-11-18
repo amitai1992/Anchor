@@ -1,4 +1,4 @@
-import { FC, useState, useContext } from "react";
+import { FC, useState, useContext, useCallback } from "react";
 import { QuestionData } from "../../utils/types";
 import classes from "./Question.module.css";
 import { useNavigate } from "react-router-dom";
@@ -24,17 +24,17 @@ const Question: FC<QuestionProps> = ({
   );
 
   const navigate = useNavigate();
-  const handleAnswerClick = (ans: string) => {
+  const handleAnswerClick = useCallback((ans: string) => {
     setAnswer(ans);
-  };
+  },[setAnswer]);
 
-  const handleNextClick = () => {
+  const handleNextClick = useCallback(() => {
     if (!answerState) {
       return;
     }
     updateAnswers(data.question, answerState);
     navigate(nextPath);
-  };
+  },[answerState, data.question, updateAnswers, navigate, nextPath]);
 
   return (
     <div>
